@@ -1,0 +1,6 @@
+/home/cdearaujo/Documents/projects/springboot-crud/src/main/java/com/example/crud/controller/IndexController.java
+/home/cdearaujo/Documents/projects/springboot-crud/src/main/java/com/example/crud/exception/ResourceNotFoundException.java
+/home/cdearaujo/Documents/projects/springboot-crud/src/main/java/com/example/crud/repository/NoteRepository.java
+/home/cdearaujo/Documents/projects/springboot-crud/src/main/java/com/example/crud/model/Note.java
+/home/cdearaujo/Documents/projects/springboot-crud/src/main/java/com/example/crud/controller/NoteController.java
+/home/cdearaujo/Documents/projects/springboot-crud/src/main/java/com/example/crud/CrudApplication.java
