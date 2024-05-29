@@ -5,13 +5,15 @@ import com.example.crud.model.Note;
 import com.example.crud.repository.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
+@Controller
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/public/api")
 public class NoteController {
 
     @Autowired
@@ -21,6 +23,13 @@ public class NoteController {
     public List<Note> getAllNotes() {
         return noteRepository.findAll();
     }
+
+
+    @GetMapping("/notes/form")
+    public String showForm() {
+        return "csrf-form";
+    }
+    
 
     @PostMapping("/notes")
     public Note createNote(@Valid @RequestBody Note note) {
