@@ -24,14 +24,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf
-                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
+                        .csrfTokenRepository(csrfTokenRepository()))
                 .authorizeRequests(requests -> requests
-                        .antMatchers("/public/**").permitAll()
-                        .anyRequest().authenticated())
-                .formLogin(login -> login
-                        .permitAll())
-                .logout(logout -> logout
-                        .permitAll());
+                        .antMatchers("/api/public/**").denyAll()
+                        .anyRequest().authenticated());
+               
     }
 
 
