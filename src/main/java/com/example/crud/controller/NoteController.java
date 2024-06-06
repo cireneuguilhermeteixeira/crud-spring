@@ -5,44 +5,32 @@ import com.example.crud.model.Note;
 import com.example.crud.repository.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.web.csrf.CsrfToken;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
-@Controller
+
+@RestController
 @RequestMapping("/api")
 public class NoteController {
 
     @Autowired
     NoteRepository noteRepository;
 
+
+    @GetMapping("/csrf-token")
+    public CsrfToken csrfToken(HttpServletRequest request) {
+        return (CsrfToken) request.getAttribute(CsrfToken.class.getName());
+    }
+
     @GetMapping("/notes")
     public List<Note> getAllNotes() {
         return noteRepository.findAll();
-    }
-
-
-    @GetMapping("/public/new-note")
-    public String createNote(Model model) {
-        model.addAttribute("note", new Note());
-        return "noteForm";
-    }
-
-
-    @GetMapping("/public/list")
-    public String listNote(Model model) {
-        model.addAttribute("notes", noteRepository.findAll());
-        return "noteList";
-    }
-    
-
-    @PostMapping("/public/notes")
-    public String createNoteForm(@ModelAttribute Note note) {
-        noteRepository.save(note);
-        return "redirect:/api/public/list";
     }
 
     @PostMapping("/notes")
